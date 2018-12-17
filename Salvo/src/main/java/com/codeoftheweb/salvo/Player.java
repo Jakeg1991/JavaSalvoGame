@@ -65,6 +65,4 @@ public class Player {
         gamePlayer.setPlayer(this);
         gamePlayers.add(gamePlayer);
     }
-
-
 }
