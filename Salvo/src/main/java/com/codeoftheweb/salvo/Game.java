@@ -45,6 +45,9 @@ public class Game {
         gamePlayer.setGame(this);
         gamePlayers.add(gamePlayer);
     }
+    public Set<GamePlayer> getGamePlayers() {
+        return gamePlayers;
+    }
 
 
 
