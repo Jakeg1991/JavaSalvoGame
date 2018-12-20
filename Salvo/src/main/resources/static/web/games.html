@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Salvo!</title>
+</head>
+
+<body>
+    <div id="gameList">
+        <div v-if="isLoading">
+            LOADING
+        </div>
+        <div v-else>
+            <h1>GAMES</h1>
+            <div v-for="(game,index) in gameData" :key="index">
+                <ol>
+                    <li>Game : {{game.id}}</li>
+                </ol>
+            </div>
+        </div>
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <script src="games.js"></script>
+</body>
+
+</html>
