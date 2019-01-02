@@ -1,7 +1,6 @@
 var gamesList = new Vue({
     el: "#gameList",
     data: {
-//        gamesUrl: "http://localhost:8080/api/games",
         gameData: [],
         isLoading: true,
 
