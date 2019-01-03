@@ -1,6 +1,7 @@
 package com.codeoftheweb.salvo;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -36,6 +37,20 @@ public class SalvoController {
             }}).collect(Collectors.toList());
     }
 
+
+//    @RequestMapping("/game_view/nn")
+//    private HashMap<String, Object> getOneGame(@PathVariable Long gamePlayerId){
+//        GamePlayer gamePlayer = gamePlayerRepository.findOne(gamePlayerId);
+//
+//        return new LinkedHashMap<String, Object>(){{
+//            put("id", gamePlayer.getGame().getGameId());
+//            put("created", gamePlayer.getGame().getDate());
+//            put("gamePlayers", getGamePlayers(gamePlayer.getGame()));
+//            put("ships", getGamePlayerShipType(gamePlayer));
+//            put("salvos", getGameSalvos(gamePlayer.getGame().getGamePlayers()));
+//        }};
+//    }
+    
     private HashMap<String, Object> getPlayerData(Player player){
             return new HashMap<String, Object>(){{
                 put("id", player.getPlayerId());
@@ -43,3 +58,4 @@ public class SalvoController {
             }};
     }
 }
+

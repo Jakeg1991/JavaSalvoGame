@@ -3,7 +3,8 @@ package com.codeoftheweb.salvo;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Entity
@@ -12,7 +13,7 @@ public class Ship {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name = "native", strategy = "native")
-    private long id;
+    private long shipId;
     private String shipType;
 
     public Ship() { }
@@ -21,24 +22,45 @@ public class Ship {
     @JoinColumn(name="gamePlayer_id")
     private GamePlayer gamePlayer;
 
-    public Ship(String shipType){
-        this.shipType=shipType;
+    public List<String> getGridLocations() {
+        return gridLocations;
+    }
+
+    public void setGridLocations(List<String> gridLocations) {
+        this.gridLocations = gridLocations;
+    }
+
+    @ElementCollection
+    @Column(name="grid_locations")
+    private List<String> gridLocations = new ArrayList<>();
+
+    public String getShipType() {
+        return shipType;
+    }
+
+    public void setShipType(String shipType) {
+        this.shipType = shipType;
+    }
+
+    public Ship(String shipType, List<String> gridLocation){
+        this.shipType = shipType;
+        this.gridLocations = gridLocation;
 
     }
     public long getShipId() {
-        return id;
+        return shipId;
     }
 
-    public void seShipId(long id) {
-        this.id = id;
+    public void setShipId(long shipId) {
+        this.shipId = shipId;
     }
 
-    public void addGamePlayer(GamePlayer gamePlayer) {
-        gamePlayer.setShip(this);
-        gamePlayer.add(gamePlayer);
+    public void setGamePlayer(GamePlayer gamePlayer) {
+        this.gamePlayer = gamePlayer;
     }
-    public Set<GamePlayer> getGamePlayers() {
-        return gamePlayers;
+
+    public GamePlayer getGamePlayer() {
+        return gamePlayer;
     }
 
 
