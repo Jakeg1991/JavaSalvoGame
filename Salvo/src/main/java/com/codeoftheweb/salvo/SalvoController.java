@@ -31,26 +31,23 @@ public class SalvoController {
                 put("gamePlayers", game.getGamePlayers()
                         .stream()
                         .map(gamePlayer -> new LinkedHashMap<String, Object>() {{
-                            put("id", gamePlayer.getId());
+                            put("id", gamePlayer.getGamePlayerId());
                             put("player", getPlayerData(gamePlayer.getPlayer()));
                         }}).collect(Collectors.toList()));  //this "collects" all the separate hashmaps into one list object.
             }}).collect(Collectors.toList());
     }
-
-
-//    @RequestMapping("/game_view/nn")
-//    private HashMap<String, Object> getOneGame(@PathVariable Long gamePlayerId){
-//        GamePlayer gamePlayer = gamePlayerRepository.findOne(gamePlayerId);
-//
-//        return new LinkedHashMap<String, Object>(){{
-//            put("id", gamePlayer.getGame().getGameId());
-//            put("created", gamePlayer.getGame().getDate());
-//            put("gamePlayers", getGamePlayers(gamePlayer.getGame()));
-//            put("ships", getGamePlayerShipType(gamePlayer));
-//            put("salvos", getGameSalvos(gamePlayer.getGame().getGamePlayers()));
-//        }};
-//    }
     
+    @RequestMapping("/game_view/{gamePlayerId}")
+
+    private HashMap<String, Object> getSingleGame(@PathVariable long gamePlayerId){
+
+        GamePlayer gp = gamePlayerRepository.findById(gamePlayerId).orElse(null);
+//        GamePlayer gp = gamePlayerRepository.findOne(gamePlayerId);
+
+        return new LinkedHashMap<String, Object>(){{
+        }};
+    }
+
     private HashMap<String, Object> getPlayerData(Player player){
             return new HashMap<String, Object>(){{
                 put("id", player.getPlayerId());
