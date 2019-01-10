@@ -15,6 +15,9 @@ public class GamePlayer {
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name = "native", strategy = "native")
     private long id;
+
+
+
     private Date joinDate;
 
     public GamePlayer(Date joinDate) {
@@ -25,12 +28,14 @@ public class GamePlayer {
     @JoinColumn(name="player_id")
     private Player player;
 
+
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="game_id")
     private Game game;
 
     @OneToMany(mappedBy="gamePlayer",fetch = FetchType.EAGER)
-    Set<Ship> ships= new HashSet<>();
+    Set<Ship> ownedShips= new HashSet<>();
 
     public GamePlayer() {
     }
@@ -43,22 +48,19 @@ public class GamePlayer {
         this.id = id;
     }
 
-    public Date getjoinDate() {
+    public Date getJoinDate() {
         return joinDate;
     }
 
-    public void setCreationDate(Date date) {
-        this.joinDate = date;
+    public void setJoinDate(Date joinDate) {
+        this.joinDate = joinDate;
     }
 
     public Player getPlayer() {
         return player;
     }
 
-    public void addShip(Ship ship) {
-        ship.setGamePlayer(this);
-        ships.add(ship);
-    }
+
 
     public void setPlayer(Player player) {
         this.player = player;
@@ -70,5 +72,21 @@ public class GamePlayer {
 
     public void setGame(Game game) {
         this.game = game;
-    }}
+    }
+
+
+    public void addShip(Ship ship) {
+        ship.setGamePlayer(this);
+        ownedShips.add(ship);
+    }
+
+    public Set<Ship> getOwnedShips() {
+        return ownedShips;
+    }
+
+    public void setOwnedShips(Set<Ship> ownedShips) {
+        this.ownedShips = ownedShips;
+    }
+}
+
 

@@ -22,25 +22,13 @@ public class Ship {
     @JoinColumn(name="gamePlayer_id")
     private GamePlayer gamePlayer;
 
-    public List<String> getGridLocations() {
-        return gridLocations;
-    }
-
-    public void setGridLocations(List<String> gridLocations) {
-        this.gridLocations = gridLocations;
-    }
 
     @ElementCollection
     @Column(name="grid_locations")
     private List<String> gridLocations = new ArrayList<>();
 
-    public String getShipType() {
-        return shipType;
-    }
 
-    public void setShipType(String shipType) {
-        this.shipType = shipType;
-    }
+
 
     public Ship(String shipType, List<String> gridLocation){
         this.shipType = shipType;
@@ -63,7 +51,21 @@ public class Ship {
         return gamePlayer;
     }
 
+    public String getShipType() {
+        return shipType;
+    }
 
+    public void setShipType(String shipType) {
+        this.shipType = shipType;
+    }
+
+    public List<String> getGridLocations() {
+        return gridLocations;
+    }
+
+    public void setGridLocations(List<String> gridLocations) {
+        this.gridLocations = gridLocations;
+    }
 
 
 }
